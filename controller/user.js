@@ -19,7 +19,7 @@ const signin = async (req, res) => {
             res.status(200).json({
               status: 200,
               timestamp: new Date().toLocaleTimeString(),
-              message: "Berhasil login ke API",
+              message: "Berhasil sign in ke API",
               token,
             });
           }
@@ -31,6 +31,12 @@ const signin = async (req, res) => {
           message: "Password yang anda masukkan salah",
         });
       }
+    } else {
+      res.status(401).json({
+        status: 401,
+        timestamp: new Date().toLocaleTimeString(),
+        message: "Email tidak terdaftar",
+      });
     }
   } catch (error) {
     res.status(500).json({
@@ -50,7 +56,7 @@ const signup = async (req, res) => {
     res.status(400).json({
       status: 400,
       timestamp: new Date().toLocaleTimeString(),
-      message: "Email tersebut sudah terpakai, masukkan email lain",
+      message: "Sign up gagal",
     });
   } else {
     try {
@@ -58,7 +64,7 @@ const signup = async (req, res) => {
       res.status(201).json({
         status: 201,
         timestamp: new Date().toLocaleTimeString(),
-        message: "Register sudah berhasil, anda bisa login untuk mendapatkan token",
+        message: "Sign up sudah berhasil, anda bisa sign in untuk mendapatkan token",
       });
     } catch (error) {
       res.status(500).json({
