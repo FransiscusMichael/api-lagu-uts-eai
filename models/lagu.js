@@ -3,7 +3,7 @@ const db = require("../config/db");
 const getDataLagu = (params) => {
   const strings = Object.keys(params);
   if (strings.length == 0) {
-    const query = `SELECT table_lagu.judul_lagu, table_lagu.band_artis, table_lagu.album, table_lagu.tahun_rilis FROM table_lagu JOIN table_genre ON table_lagu.id_genre = table_genre.id`;
+    const query = `SELECT table_lagu.judul_lagu, table_lagu.band_artis, table_lagu.album, table_genre.genre, table_lagu.tahun_rilis FROM table_lagu JOIN table_genre ON table_lagu.id_genre = table_genre.id`;
     return db.execute(query);
   } else {
     let string = "";
@@ -11,7 +11,7 @@ const getDataLagu = (params) => {
       string += `${s}='${params[s]}' AND `;
     });
     string = string.slice(0, -5);
-    const query = `SELECT table_lagu.judul_lagu, table_lagu.band_artis, table_lagu.album, table_lagu.tahun_rilis FROM table_lagu JOIN table_genre ON table_lagu.id_genre = table_genre.id WHERE ${string}`;
+    const query = `SELECT table_lagu.judul_lagu, table_lagu.band_artis, table_lagu.album, table_genre.genre, table_lagu.tahun_rilis FROM table_lagu JOIN table_genre ON table_lagu.id_genre = table_genre.id WHERE ${string}`;
     return db.execute(query);
   }
 };
