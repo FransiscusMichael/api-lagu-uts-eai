@@ -36,7 +36,7 @@ const buatLaguBaru = async (req, res) => {
       message: "Berhasil menambahkan lagu",
       data: {
         id_genre,
-        nama_lagu,
+        judul_lagu,
         band_artis,
         album,
         tahun_rilis,
